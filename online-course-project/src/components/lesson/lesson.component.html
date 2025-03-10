@@ -1,0 +1,28 @@
+
+@for(l of (lessons$ | async ); track l.id) 
+{
+<a [routerLink]="[]">{{ l.title }} </a>
+<br>
+
+
+}
+@empty{
+    <div>load...</div>
+}
+@if(isTeacher)
+{
+<div class="add-button-container">
+    <button mat-button (click)="add()">Add</button>
+</div>
+}
+
+
+@if(flagAdd)
+{
+<app-lesson-form [lesson]="newLesson" (lessonSave)="addLesson($event)"></app-lesson-form>
+}
+<router-outlet></router-outlet>
+
+
+
+

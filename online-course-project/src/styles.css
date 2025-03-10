@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/@angular/material/prebuilt-themes/rose-red.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+  }
+  
+  .form-field {
+    display: flex;
+    flex-direction: column; 
+  }
+  
+  mat-form-field {
+    width: 100%; 
+  }
+  
+  mat-error {
+    margin-bottom: 5px; 
+  }
+  .submit-button {
+    margin-top: 20px;
+    display: block; 
+  }

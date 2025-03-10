@@ -1,0 +1,25 @@
+@if(course)
+{<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{ course.title }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <p>{{ course.description }}</p>
+        <app-lesson [courseId]="courseId"></app-lesson>
+    </mat-card-content>
+    @if(isTeacher)
+    { 
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="edit()">Edit</button>
+        <button mat-raised-button color="warn" (click)="deleteCourse()">Delete</button>
+    </mat-card-actions>
+    }
+
+    @if(flagEdit){
+    <!-- <ng-container> -->
+        <app-course-form [course]="this.course" (courseSave)="editCourse($event)"></app-course-form>
+    <!-- </ng-container> -->
+    }
+
+</mat-card>}

@@ -1,0 +1,42 @@
+<mat-dialog-content>
+    <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email">
+            @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched)
+            {
+            <mat-error>
+                Email is required and must be valid.
+            </mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password">
+            @if(signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched)
+            { <mat-error>
+                Password is required and must be at least 6 characters long.
+            </mat-error>}
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+            @if (signUpForm.get('name')?.invalid && signUpForm.get('name')?.touched) { <mat-error>
+                Name is required and must be at least 3 characters long.
+            </mat-error>}
+
+        </mat-form-field>
+
+            <mat-radio-group formControlName="role" style="text-align: center;">
+               @for(role of userRoles;track $index)
+               {
+                <mat-radio-button [value]="role">{{role}}</mat-radio-button>
+               }
+            </mat-radio-group>
+        <button mat-raised-button class="submit-button" type="submit" [disabled]="signUpForm.invalid" 
+        >Sign Up</button>
+    </form>
+</mat-dialog-content>

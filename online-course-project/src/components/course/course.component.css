@@ -1,0 +1,17 @@
+mat-nav-list {
+    padding: 10px; /* Padding */
+    border-radius: 5px; /* Rounded corners */
+    width: 200px; /* Set a fixed width */
+    position: relative; /* Fix the position on the left */
+    top: 20px; /* Distance from the top */
+    left: 20px; /* Distance from the left */
+}
+.nav-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+}
+
+.add-button-container {
+    margin-top: 30px; /* Space between the list and the button */
+   margin-left: 30px; /* Distance from the left */
+}

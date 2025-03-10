@@ -1,0 +1,26 @@
+<mat-dialog-content>
+  <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" >
+      @if (signInForm.get('email')?.invalid && signInForm.get('email')?.touched)
+      {
+      <mat-error>
+        Email is required and must be valid.
+      </mat-error>
+      }
+
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password">
+      @if(signInForm.get('password')?.invalid && signInForm.get('password')?.touched)
+      { <mat-error>
+        Password is required and must be at least 6 characters long.
+      </mat-error>}
+    </mat-form-field>
+
+    <button mat-raised-button class="submit-button" type="submit" [disabled]="signInForm.invalid">Sign In</button>
+  </form>
+</mat-dialog-content>

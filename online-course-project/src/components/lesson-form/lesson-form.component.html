@@ -1,0 +1,26 @@
+
+
+<form [formGroup]="LessonForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" type="text" >
+      @if (LessonForm.get('title')?.invalid && LessonForm.get('title')?.touched)
+      {
+      <mat-error>
+        title is required and must be valid.
+      </mat-error>
+      }
+
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Content</mat-label>
+      <input matInput formControlName="content" type="text">
+      @if(LessonForm.get('content')?.invalid && LessonForm.get('content')?.touched)
+      { <mat-error>
+        content is required 
+      </mat-error>}
+    </mat-form-field>
+
+    <button mat-raised-button class="submit-button" type="submit" [disabled]="LessonForm.invalid">Save Changes</button>
+  </form>

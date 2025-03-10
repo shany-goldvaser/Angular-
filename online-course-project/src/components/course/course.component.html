@@ -1,0 +1,33 @@
+<div class="nav-container">
+    <mat-nav-list>
+        @for(c of (courses$ | async ); track c.id)
+        {
+        <mat-list-item [routerLink]="[c.id]">{{ c.title }} </mat-list-item>
+        @if(!isCourseInMyCourses(c))
+        {
+             <button (click)="enroll(c.id)">Enroll</button>
+        }
+        @if(isCourseInMyCourses(c))
+        {
+            <button (click)="unenroll(c.id)">Unenroll</button>
+        }
+
+        }
+        @empty{
+        <div> load...</div>
+        }
+    </mat-nav-list>
+
+    @if(isTeacher)
+    {
+    <div class="add-button-container">
+        <button mat-button (click)="add()">Add</button>
+    </div>
+}
+</div>
+
+@if(flagAdd)
+{
+<app-course-form [course]="newCourse" (courseSave)="addCourse($event)"></app-course-form>
+}
+<router-outlet></router-outlet>
