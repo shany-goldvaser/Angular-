@@ -15,10 +15,9 @@ export const routes: Routes = [
                 path: ':id', component: CourseDetailComponent,
                 children:
                     [
-                        {
-                            path: 'lessons', component: LessonComponent,
-                            children: [{ path: ':id', component: LessonDetailComponent },]
-                        }
+
+                            { path: 'lessons/:id', component: LessonDetailComponent },
+
                     ]
             }
             ,]

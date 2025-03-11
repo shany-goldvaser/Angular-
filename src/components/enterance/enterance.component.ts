@@ -8,7 +8,7 @@ import { Router, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-enterance',
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule, MatButton,CourseComponent,RouterOutlet,],
+  imports: [MatDialogModule, MatButtonModule, MatButton,RouterOutlet,],
   templateUrl: './enterance.component.html',
   styleUrl: './enterance.component.css'
 })

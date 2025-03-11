@@ -30,7 +30,6 @@ export class CourseDetailComponent implements OnInit {
             this.course = data;
           },
           error => {
-            console.error('Error fetching course:', error);
             alert(`Error fetching course:${error.message}`);
             this.ro.navigate(['courses']);
           }
@@ -41,31 +40,28 @@ export class CourseDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private ro: Router, private courseService: CourseService) { }
   edit() {
-    console.log(this.course);
-    
     this.flagEdit = true;
   }
   editCourse($event: any) {
-    this.course = $event;
-    this.courseService.updateCourse(+this.courseId, this.course).subscribe({
-      next: (response: any) => {
-        console.log('Course updated:', response);
-        // Reset the new course form
-        // this.newCourse = { id: 0, title: '', description: '', teacherId: 0 };
-      }
-    });
+    this.course.description=$event.description;
+    this.course.title=$event.title;
     this.flagEdit = false;
+    this.courseService.updateCourse(+this.courseId, this.course).subscribe({
+      error(err) {
+        alert(`Error updating course: ${err.message}`);
+      },
+    });
   }
   deleteCourse(): void {
     this.courseService.deleteCourse(+this.courseId).subscribe({
-      next: (response) => {
+      next: () => {
+        this.ro.navigate(['courses']);
       },
       error: (err) => {
         alert(`Error deleting course: ${err.message}`);
       }
     });
   }
-
   }
   
 

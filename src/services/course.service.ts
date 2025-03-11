@@ -14,34 +14,29 @@ export class CourseService {
     this.loadCourses();
   }
 
-    // טוען את כל הקורסים מהשרת ומעדכן את BehaviorSubject
     private loadCourses(): void {
       this.http.get<Course[]>(this.apiUrl).subscribe(courses => {
         this.coursesSubject.next(courses);
       });
     }
   
-  // קבלת כל הקורסים
   getAllCourses(): Observable<Course[]> {
     return this.courses$;
   }
 
-
-  // קבלת פרטי קורס לפי מזהה
   getCourseById(id: number): Observable<Course> {
     return this.http.get<Course>(`${this.apiUrl}/${id}`);
   }
 
-  // יצירת קורס חדש
+
 createCourse(course: Partial<Course>): Observable<any> {
     return this.http.post(this.apiUrl, course).pipe(
-      tap(() => this.loadCourses()) // טוען מחדש את הקורסים לאחר הוספה
+      tap(() => this.loadCourses()) 
     );
   }
-  // עדכון פרטי קורס לפי מזהה
   updateCourse(id: number, course: Partial<Course>): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, course).pipe(
-      tap(() => this.loadCourses()) // טוען מחדש את הקורסים לאחר עדכון
+      tap(() => this.loadCourses()) 
     );
   }
   deleteCourse(id: number): Observable<any> {
@@ -56,14 +51,14 @@ createCourse(course: Partial<Course>): Observable<any> {
 
   enrollStudent(courseId: number, userId: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/${courseId}/enroll`, { userId }).pipe(
-      tap(() => this.loadCourses()) // Optionally reload courses if needed
+      tap(() => this.loadCourses())
     );
   }
 
-  // Unenroll a student from a course
+
   unenrollStudent(courseId: number, userId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${courseId}/unenroll`, { body: { userId } }).pipe(
-      tap(() => this.loadCourses()) // Optionally reload courses if needed
+      tap(() => this.loadCourses()) 
     );
   }
 }

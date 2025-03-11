@@ -1,7 +1,7 @@
 
 @for(l of (lessons$ | async ); track l.id) 
 {
-<a [routerLink]="['lesson/'+l.id]">{{ l.title }} </a>
+<mat-card-title class="lesson-link"  [routerLink]="['/courses', courseId, 'lessons', l.id]">{{ l.title }} </mat-card-title>
 <br>
 }
 @empty{
@@ -13,8 +13,6 @@
     <button mat-button (click)="add()">Add lesson</button>
 </div>
 }
-
-
 @if(flagAdd)
 {
 <app-lesson-form [lesson]="newLesson" (lessonSave)="addLesson($event)"></app-lesson-form>

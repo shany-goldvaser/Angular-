@@ -34,8 +34,6 @@ export class CourseFormComponent implements OnInit {
   onSubmit() {
     if (this.addCourseForm.valid) {
       this.courseSave.emit(this.addCourseForm.value);
-      // this.addCourseForm.reset();
-
     }
   }
 

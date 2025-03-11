@@ -29,7 +29,6 @@ export class LessonDetailComponent implements OnInit {
             this.lesson = data;
           },
           error => {
-            console.error('Error fetching lesson:', error);
             alert(`Error fetching lesson:${error.message}`);
             this.ro.navigate(['lesson'])
           }
@@ -39,25 +38,17 @@ export class LessonDetailComponent implements OnInit {
   }
   constructor(private route: ActivatedRoute, private ro: Router, private lessonService: LessonService) { }
   edit() {
-    console.log(this.lesson);
-
     this.flagEdit = true;
   }
   editlesson($event: any) {
-    this.lesson = $event;
-    this.lessonService.updateLesson(+this.lessonId, this.lesson).subscribe({
-      next: (response: any) => {
-        console.log('lesson updated:', response);
-        // Reset the new lesson form
-        // this.newlesson = { id: 0, title: '', description: '', teacherId: 0 };
-      }
-    });
     this.flagEdit = false;
+    this.lesson.content=$event.content;
+    this.lesson.title=$event.title;
+    this.lessonService.updateLesson(+this.lessonId, this.lesson).subscribe({
+    });
   }
   deletelesson(): void {
     this.lessonService.deleteLesson(+this.lessonId).subscribe({
-      next: (response) => {
-      },
       error: (err) => {
         alert(`Error deleting lesson: ${err.message}`);
       }

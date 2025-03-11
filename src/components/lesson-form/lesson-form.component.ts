@@ -33,8 +33,6 @@ constructor(private fb: FormBuilder) {
   onSubmit() {
     if (this.LessonForm.valid) {
       this.lessonSave.emit(this.LessonForm.value);
-      // this.addCourseForm.reset();
-
     }
   }
 

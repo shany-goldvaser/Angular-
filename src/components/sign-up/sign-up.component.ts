@@ -44,12 +44,11 @@ export class SignUpComponent {
             console.log('User signed up:', response);
             sessionStorage.setItem('token', response.token);
             sessionStorage.setItem('user', response.role);
-            sessionStorage.setItem('id', response.id);
+            sessionStorage.setItem('id', response.userId);
             this.dialogRef.close(true);
             this.user.isEnter=  true;
           },
           (error) => {
-            console.error('Sign-up error:', error);
             alert(error.message);
             this.dialogRef.close(false);
           }

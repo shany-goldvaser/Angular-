@@ -6,3 +6,6 @@
     flex-wrap:nowrap;
     flex-direction: column;
   }
+  .custom-button{
+    margin: 10px;
+  }

@@ -1,31 +1,49 @@
-<div class="nav-container">
-    <mat-nav-list>
-        @for(c of (courses$ | async ); track c.id)
-        {
-        <mat-list-item [routerLink]="[c.id]">{{ c.title }} </mat-list-item>
-        @if(!isCourseInMyCourses(c))
-        {
-        <button (click)="enroll(c.id)">Enroll</button>
-        }
-        @if(isCourseInMyCourses(c))
-        {
-        <button (click)="unenroll(c.id)">Unenroll</button>
-        }
+<div class="course-container">
+    <div class="course-list">
+        <mat-grid-list cols="3" rowHeight="1:1" gutterSize="10px">
+            @for(c of (courses$ | async); track c.id)
+            {
+            <mat-grid-tile>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title  class="course-link" [routerLink]="['/courses', c.id]">{{ c.title }}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
 
-        }
-        @empty{
-        <div> load...</div>
-        }
-    </mat-nav-list>
+                        <p>{{ c.description }}</p>
+                        <p>Teacher : {{ c.teacherId }}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        @if(!isCourseInMyCourses(c))
+                        {
+                        <button mat-button (click)="enroll(c.id)">Enroll</button>
+                        }
+                        @if(isCourseInMyCourses(c))
+                        {
+                        <button mat-button (click)="unenroll(c.id)">Unenroll</button>
+                        }
 
-    @if(isTeacher)
-    {
-    <button mat-button (click)="add()">Add Course</button>
-    }
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+            }
+            @empty
+            {
+            <div>Loading...</div>
+            }
+            @if(isTeacher)
+            {
+            <button mat-button (click)="add()"> Add Course </button>
+            }
+        </mat-grid-list>
+        <div> @if(flagAdd)
+            {
+            <app-course-form [course]="newCourse" (courseSave)="addCourse($event)"></app-course-form>
+            }
+        </div>
+    </div>
+    <div class="router-outlet-container">
+        <router-outlet></router-outlet>
+    </div>
+
 </div>
-
-@if(flagAdd)
-{
-<app-course-form [course]="newCourse" (courseSave)="addCourse($event)"></app-course-form>
-}
-<router-outlet></router-outlet>

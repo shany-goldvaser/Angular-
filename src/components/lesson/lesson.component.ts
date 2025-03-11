@@ -46,24 +46,11 @@ export class LessonComponent {
     this.flagAdd = false;
     this.newLesson = event;
     this.lessonService.createLesson(this.newLesson).subscribe({
-      next: (response: any) => {
-        console.log('Lesson created:', response);
-        // Reset the new lesson form
+      next: () => {
         this.newLesson = { id: 0, title: '', content: '', courseId: 0 };
       },
       error: (err: any) => {
-        console.error('Error creating lesson:', err);
-      }
-    });
-  }
-
-  deleteLesson(lessonId: number): void {
-    this.lessonService.deleteLesson(lessonId).subscribe({
-      next: (response: any) => {
-        console.log('Lesson deleted:', response);
-      },
-      error: (err: any) => {
-        console.error('Error deleting lesson:', err);
+        alert(`Error creating lesson:, ${err.message}`);
       }
     });
   }

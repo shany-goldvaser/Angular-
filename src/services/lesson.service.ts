@@ -11,11 +11,7 @@ export class LessonService {
   lessons$:Observable<Lesson[]> = this.lessonSubject.asObservable();
   private apiUrl: string = `http://localhost:3000/api/courses`;
    courseId!: string;
-  constructor(private http: HttpClient) {
-    console.log('im in the ctor of LessonService');
-    console.log(this.courseId);
-
-  }
+  constructor(private http: HttpClient) {}
 
   private loadLessons(id:string): void {
     this.courseId = id;
@@ -26,7 +22,7 @@ export class LessonService {
 
   getLessons(id:string): Observable<Lesson[]> {
     this.loadLessons(id); 
-    return this.lessons$; // Return the observable from BehaviorSubject
+    return this.lessons$; 
   }
 
   getLessonById(lessonId: number): Observable<Lesson> {
@@ -54,7 +50,6 @@ export class LessonService {
       message: string;
     }>(this.apiUrl+`/${this.courseId}/lessons/${lessonId}`, lessonData).pipe(
       tap(response => {
-        // Reload lessons after update
         this.loadLessons(this.courseId);
       })
     );
@@ -67,7 +62,6 @@ export class LessonService {
       message: string;
     }>(this.apiUrl+`/${this.courseId}/lessons/${lessonId}`).pipe(
       tap(response => {
-        // Reload lessons after deletion
         this.loadLessons(this.courseId);
       })
     );
