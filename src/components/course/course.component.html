@@ -5,11 +5,11 @@
         <mat-list-item [routerLink]="[c.id]">{{ c.title }} </mat-list-item>
         @if(!isCourseInMyCourses(c))
         {
-             <button (click)="enroll(c.id)">Enroll</button>
+        <button (click)="enroll(c.id)">Enroll</button>
         }
         @if(isCourseInMyCourses(c))
         {
-            <button (click)="unenroll(c.id)">Unenroll</button>
+        <button (click)="unenroll(c.id)">Unenroll</button>
         }
 
         }
@@ -20,10 +20,8 @@
 
     @if(isTeacher)
     {
-    <div class="add-button-container">
-        <button mat-button (click)="add()">Add</button>
-    </div>
-}
+    <button mat-button (click)="add()">Add Course</button>
+    }
 </div>
 
 @if(flagAdd)

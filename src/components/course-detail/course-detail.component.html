@@ -6,7 +6,7 @@
 
     <mat-card-content>
         <p>{{ course.description }}</p>
-        <app-lesson [courseId]="courseId"></app-lesson>
+        <app-lesson  [courseId]="courseId"></app-lesson>
     </mat-card-content>
     @if(isTeacher)
     { 
@@ -17,9 +17,8 @@
     }
 
     @if(flagEdit){
-    <!-- <ng-container> -->
+
         <app-course-form [course]="this.course" (courseSave)="editCourse($event)"></app-course-form>
-    <!-- </ng-container> -->
     }
 
 </mat-card>}

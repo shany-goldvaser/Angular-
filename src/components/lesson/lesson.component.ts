@@ -15,41 +15,43 @@ import { LessonFormComponent } from '../lesson-form/lesson-form.component';
 @Component({
   selector: 'app-lesson',
   standalone: true,
-  imports: [    AsyncPipe,
+  imports: [AsyncPipe,
     MatListModule,
     MatSidenavModule,
     FormsModule,
-    MatFormFieldModule,RouterOutlet,
+    MatFormFieldModule, RouterOutlet,
     RouterLink,
     MatButton,
-   LessonFormComponent],
+    LessonFormComponent,
+    RouterOutlet,],
   templateUrl: './lesson.component.html',
   styleUrl: './lesson.component.css'
 })
 export class LessonComponent {
 
   flagAdd: boolean = false;
-  isTeacher:boolean = (sessionStorage.getItem("user") == "teacher") ? true : false;  
+  isTeacher: boolean = (sessionStorage.getItem("user") == "teacher") ? true : false;
   lessons$!: Observable<Lesson[]>;
-  newLesson: { id:number,title: string; content: string; courseId: number } = {id:0, title: '', content: '', courseId: 0 };
+  newLesson: { id: number, title: string; content: string; courseId: number } = { id: 0, title: '', content: '', courseId: 0 };
   @Input() courseId!: string;
-  constructor(private lessonService: LessonService) {}
+  constructor(private lessonService: LessonService) { }
 
   ngOnInit(): void {
     this.lessons$ = this.lessonService.getLessons(this.courseId);
   }
   add() {
-    this.flagAdd=true;
-    }
-  addLesson(event:any): void {
+    this.flagAdd = true;
+  }
+  addLesson(event: any): void {
+    this.flagAdd = false;
     this.newLesson = event;
     this.lessonService.createLesson(this.newLesson).subscribe({
-      next: (response:any) => {
+      next: (response: any) => {
         console.log('Lesson created:', response);
         // Reset the new lesson form
-        this.newLesson = {id:0, title: '', content: '', courseId: 0 };
+        this.newLesson = { id: 0, title: '', content: '', courseId: 0 };
       },
-      error: (err:any) => {
+      error: (err: any) => {
         console.error('Error creating lesson:', err);
       }
     });
@@ -60,7 +62,7 @@ export class LessonComponent {
       next: (response: any) => {
         console.log('Lesson deleted:', response);
       },
-      error: (err:any) => {
+      error: (err: any) => {
         console.error('Error deleting lesson:', err);
       }
     });

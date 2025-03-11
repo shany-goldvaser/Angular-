@@ -1,10 +1,8 @@
 
 @for(l of (lessons$ | async ); track l.id) 
 {
-<a [routerLink]="[]">{{ l.title }} </a>
+<a [routerLink]="['lesson/'+l.id]">{{ l.title }} </a>
 <br>
-
-
 }
 @empty{
     <div>load...</div>
@@ -12,7 +10,7 @@
 @if(isTeacher)
 {
 <div class="add-button-container">
-    <button mat-button (click)="add()">Add</button>
+    <button mat-button (click)="add()">Add lesson</button>
 </div>
 }
 
