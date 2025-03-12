@@ -46,7 +46,6 @@ export class CourseComponent implements OnInit {
   flagAdd: boolean = false;
   userId!: number;
   ngOnInit(): void {
-    debugger
     this.courseService.getAllCourses();
     this.courses$ = this.courseService.courses$;
     this.userId = parseInt(sessionStorage.getItem('userId') || '0');

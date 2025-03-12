@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Lesson } from '../../models/lesson';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LessonService } from '../../services/lesson.service';
+import { Location } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { LessonFormComponent } from '../lesson-form/lesson-form.component';
@@ -21,7 +22,7 @@ export class LessonDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const id = params['id'];
+      const id = params['lessonId'];
       if (id) {
         this.lessonId = id;
         this.lessonService.getLessonById(+this.lessonId).subscribe(
@@ -30,13 +31,13 @@ export class LessonDetailComponent implements OnInit {
           },
           error => {
             alert(`Error fetching lesson:${error.message}`);
-            this.ro.navigate(['lesson'])
+            this.location.back();
           }
         );
       }
     });
   }
-  constructor(private route: ActivatedRoute, private ro: Router, private lessonService: LessonService) { }
+  constructor(private route: ActivatedRoute, private location: Location, private lessonService: LessonService) { }
   edit() {
     this.flagEdit = true;
   }
@@ -45,10 +46,14 @@ export class LessonDetailComponent implements OnInit {
     this.lesson.content=$event.content;
     this.lesson.title=$event.title;
     this.lessonService.updateLesson(+this.lessonId, this.lesson).subscribe({
+      error(err) {
+        alert(`Error updating lesson: ${err.message}`);
+      },
     });
   }
   deletelesson(): void {
     this.lessonService.deleteLesson(+this.lessonId).subscribe({
+      next: () => {this.location.back();},
       error: (err) => {
         alert(`Error deleting lesson: ${err.message}`);
       }

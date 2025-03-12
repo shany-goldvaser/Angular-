@@ -38,7 +38,6 @@ signIn() {
             this.user.isEnter=  true;
         },
         (error) => {
-          console.error('Sign-in error:', error);
           alert(error.message);
           this.dialogRef.close(false);
         }

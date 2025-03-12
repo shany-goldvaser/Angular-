@@ -5,6 +5,7 @@ import { EnteranceComponent } from '../components/enterance/enterance.component'
 import { authGuard } from '../guards/auth.guard';
 import { LessonComponent } from '../components/lesson/lesson.component';
 import { LessonDetailComponent } from '../components/lesson-detail/lesson-detail.component';
+import { CourseFormComponent } from '../components/course-form/course-form.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'enterance', pathMatch: 'full' },
@@ -16,9 +17,10 @@ export const routes: Routes = [
                 children:
                     [
 
-                            { path: 'lessons/:id', component: LessonDetailComponent },
+                            { path: 'lessons/:lessonId', component: LessonDetailComponent },
 
                     ]
+
             }
             ,]
     },

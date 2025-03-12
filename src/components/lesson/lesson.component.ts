@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Lesson } from '../../models/lesson';
 import { LessonService } from '../../services/lesson.service';
@@ -35,7 +35,13 @@ export class LessonComponent {
   newLesson: { id: number, title: string; content: string; courseId: number } = { id: 0, title: '', content: '', courseId: 0 };
   @Input() courseId!: string;
   constructor(private lessonService: LessonService) { }
-
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['courseId']) {
+      // Logic to refresh or fetch data based on the new courseId
+      console.log('courseId changed:', this.courseId);
+      this.lessons$ = this.lessonService.getLessons(this.courseId);
+    }
+  }
   ngOnInit(): void {
     this.lessons$ = this.lessonService.getLessons(this.courseId);
   }

@@ -4,26 +4,26 @@
 }
 
 .course-list {
-    flex: 3; /* Takes 3 parts of the available space */
-    padding: 10px; /* Optional padding */
+    flex: 3; 
+    padding: 10px; 
 }
 
 .router-outlet-container {
-    flex: 1; /* Takes 1 part of the available space */
-    padding: 10px; /* Optional padding */
-    border-left: 1px solid #ccc; /* Optional border for separation */
+    flex: 1; 
+    padding: 10px; 
+    border-left: 1px solid #ccc; 
 }
 button{
     margin: 0.25em;
 }
 .course-link {
-    color: #d2194d; /* Primary color for links */
-    text-decoration: none; /* Remove underline */
-    cursor: pointer; /* Change cursor to pointer */
-    font-weight: bold; /* Make the title bold */
+    color: #d2194d; 
+    text-decoration: none; 
+    cursor: pointer; 
+    font-weight: bold; 
 }
 
 .course-link:hover {
-    text-decoration: underline; /* Underline on hover */
-    color: #a10d57; /* Darker shade on hover */
+    text-decoration: underline; 
+    color: #a10d57; 
 }

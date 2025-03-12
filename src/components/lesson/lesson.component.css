@@ -1,11 +1,11 @@
 .lesson-link {
-    color: #af4c59; /* Change to a different primary color for lessons */
-    text-decoration: none; /* Remove underline */
-    cursor: pointer; /* Change cursor to pointer */
-    font-weight: bold; /* Make the title bold */
+    color: #af4c59; 
+    text-decoration: none; 
+    cursor: pointer; 
+    font-weight: bold; 
 }
 
 .lesson-link:hover {
-    text-decoration: underline; /* Underline on hover */
-    color: #8e385d; /* Darker shade on hover */
+    text-decoration: underline; 
+    color: #8e385d; 
 }
